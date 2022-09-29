@@ -16,7 +16,7 @@ public class AutomationPracticeForm {
         System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe");
         Configuration.browser = "chrome";
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.timeout = 10000; //10 seconds
+        //Configuration.timeout = 10000; //10 seconds
         Configuration.browserSize = "1920x1080";
         Configuration.holdBrowserOpen = true;
         //Configuration.
@@ -49,12 +49,15 @@ public class AutomationPracticeForm {
         $("#city").click();
         $("#stateCity-wrapper").$(byText("Delhi")).click(); //City
          */
-
-        $x("//input[@id='react-select-3-input']").setValue("NCR").pressEnter();//xpath its better (?)
-        $x("//input[@id='react-select-4-input']").setValue("Delhi").pressEnter();
-
         executeJavaScript("$('footer').remove()");
         executeJavaScript("$('#fixedban').remove()");
+
+        $("#state").click();
+        $("#stateCity-wrapper").$(byText("NCR")).click();//xpath its better (?)
+
+        $("#city").click();
+        $("#stateCity-wrapper").$(byText("Delhi")).click();
+
 
         $("#submit").click(); //Submit
         //Start check text
