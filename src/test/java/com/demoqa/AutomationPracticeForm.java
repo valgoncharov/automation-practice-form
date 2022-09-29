@@ -16,7 +16,7 @@ public class AutomationPracticeForm {
         System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe");
         Configuration.browser = "chrome";
         Configuration.baseUrl = "https://demoqa.com";
-        //Configuration.timeout = 10000; //10 seconds
+        Configuration.timeout = 10000; //10 seconds
         Configuration.browserSize = "1920x1080";
         Configuration.holdBrowserOpen = true;
         //Configuration.
