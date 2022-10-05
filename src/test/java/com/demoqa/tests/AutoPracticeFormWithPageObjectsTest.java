@@ -5,11 +5,7 @@ import com.demoqa.pages.AutoPracticePageObjects;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
-
-public class AutoPracticeFormWithPageObjects {
+public class AutoPracticeFormWithPageObjectsTest {
     AutoPracticePageObjects autoPracticePageObjects = new AutoPracticePageObjects();
 
     @BeforeAll
@@ -20,12 +16,10 @@ public class AutoPracticeFormWithPageObjects {
         Configuration.browserSize = "1920x1080";
         Configuration.holdBrowserOpen = true;
         Configuration.timeout = 10000;
-
     }
 
     @Test
     void practiceFormWithMinimumDataTest(){
-
        autoPracticePageObjects.openPage()
                      .setFirstName("Valentine")
                      .setLastName("Goncharov")
@@ -51,13 +45,7 @@ public class AutoPracticeFormWithPageObjects {
                 .checkResult("1.png") //Check out Picture
                 .checkResult("Avenue, str") //Check out Address
                 .checkResult("NCR Delhi")//Check out State and City
-               .pressClose();
-
-
-
-
+                .pressClose();
     }
-
-
 }
 
