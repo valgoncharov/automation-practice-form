@@ -13,7 +13,6 @@ public class UserInformation {
     public static String picture = "1.png";
     public static String hobby = "Sports";
     public static String subject = "Economics";
-    //public static String path = "src/test/resources/1.png";
     public static String streetAddress = faker.address().streetAddress();
     public static String state = "NCR";
     public static String city = "Delhi";

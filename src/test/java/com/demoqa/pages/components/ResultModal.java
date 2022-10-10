@@ -15,15 +15,8 @@ public class ResultModal {
         return this;
 
     }
-//    public ResultModal setDate(String day, String month, String year) {
-//        $(".react-datepicker__month-select").selectOption(month);
-//        $(".react-datepicker__year-select").selectOption(year);
-//        $(".react-datepicker__day--0" + day + ":not(.react-datepicker__year-select").click();
-//        return this;
-//
-//    }
 
-    public ResultModal checkResult(String... strings) { //String key,
+    public ResultModal checkResult(String... strings) {
         for (String s : strings) {
             $(".table-responsive").shouldHave(text(s)); //Check out Student Name
         }

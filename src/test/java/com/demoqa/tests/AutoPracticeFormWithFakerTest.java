@@ -39,15 +39,7 @@ public class AutoPracticeFormWithFakerTest {
         //Start check text
        autoPracticePageObjects.checkResultTableVisible()
                 .checkResultTableData(firstName, lastName, email, gender, phoneNumber, date, subject, hobby,
-                        picture, streetAddress, state, city) //Check out Student Email
-//                .checkResult() //Check out Gender
-//                .checkResult() //Check out Mobile
-//                .checkResult() //Check out Date of Birth
-//                .checkResult() //Check out Subjects
-//                .checkResult() //Check out Hobbies
-//                .checkResult() //Check out Picture
-//                .checkResult() //Check out Address
-//                .checkResult( + " " + )//Check out State and City
+                        picture, streetAddress, state, city)
                 .pressClose();
     }
 }
