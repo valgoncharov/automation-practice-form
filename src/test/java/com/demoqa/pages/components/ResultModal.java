@@ -8,6 +8,7 @@ public class ResultModal {
 
     private final static String TITLE_TEXT = "Thanks for submitting the form";
 
+
     public ResultModal checkVisible() {
         $(".modal-content").should(appear);
         $("#example-modal-sizes-title-lg").shouldHave(text(TITLE_TEXT));
@@ -22,7 +23,10 @@ public class ResultModal {
 //
 //    }
 
-    public void checkResult(String value) { //String key,
-        $(".table-responsive").shouldHave(text(value)); //Check out Student Name
+    public ResultModal checkResult(String... strings) { //String key,
+        for (String s : strings) {
+            $(".table-responsive").shouldHave(text(s)); //Check out Student Name
+        }
+        return this;
     }
 }

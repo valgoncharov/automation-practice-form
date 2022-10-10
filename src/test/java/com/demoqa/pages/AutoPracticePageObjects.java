@@ -112,8 +112,8 @@ public class AutoPracticePageObjects {
 
         return this;
     }
-    public AutoPracticePageObjects checkResult(String value){ // String key,
-       resultModal.checkResult(value); //key,
+    public AutoPracticePageObjects checkResultTableData(String... strings){ // String key,
+       resultModal.checkResult(strings); //key,
 
         return this;
     }

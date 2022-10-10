@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static com.demoqa.testData.UserInformation.*;
 
-public class AutoPracticeFormWithPageObjectsTest {
+public class AutoPracticeFormWithFakerTest {
     AutoPracticePageObjects autoPracticePageObjects = new AutoPracticePageObjects();
 
     @BeforeAll
@@ -27,26 +27,27 @@ public class AutoPracticeFormWithPageObjectsTest {
                      .setLastName(lastName)
                      .setEmail(email)
                      .setGender(gender)
-                     .setPhoneNumber("7896543210")
-                     .setBirthDay("27", "January", "1991")
-                     .setSubjects("Economics")
-                     .setHobbies("Sports")
-                     .uploadFile("1.png")
-                     .setAddress("Avenue, str")
-                     .setStateCity("NCR", "Delhi")
+                     .setPhoneNumber(phoneNumber)
+                     .setBirthDay(day, month, year)
+                     .setSubjects(subject)
+                     .setHobbies(hobby)
+                     .uploadFile(picture)
+                     .setAddress(streetAddress)
+                     .setStateCity(state, city)
                      .pressSubmit();
        autoPracticePageObjects.checkResultTableVisible();
         //Start check text
-       autoPracticePageObjects.checkResult("Valentine Goncharov")
-                .checkResult("vall@mail.ru") //Check out Student Email
-                .checkResult(gender) //Check out Gender
-                .checkResult("7896543210") //Check out Mobile
-                .checkResult("27 January,1991") //Check out Date of Birth
-                .checkResult("Economics") //Check out Subjects
-                .checkResult("Sports") //Check out Hobbies
-                .checkResult("1.png") //Check out Picture
-                .checkResult("Avenue, str") //Check out Address
-                .checkResult("NCR Delhi")//Check out State and City
+       autoPracticePageObjects.checkResultTableVisible()
+                .checkResultTableData(firstName, lastName, email, gender, phoneNumber, date, subject, hobby,
+                        picture, streetAddress, state, city) //Check out Student Email
+//                .checkResult() //Check out Gender
+//                .checkResult() //Check out Mobile
+//                .checkResult() //Check out Date of Birth
+//                .checkResult() //Check out Subjects
+//                .checkResult() //Check out Hobbies
+//                .checkResult() //Check out Picture
+//                .checkResult() //Check out Address
+//                .checkResult( + " " + )//Check out State and City
                 .pressClose();
     }
 }
