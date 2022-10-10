@@ -2,8 +2,10 @@ package com.demoqa.testData;
 
 import com.github.javafaker.Faker;
 
+import java.util.Locale;
+
 public class UserInformation {
-    private static final Faker faker = new Faker();
+    private static final Faker faker = new Faker(new Locale("en"));
 
     public static String firstName = faker.name().firstName(); // Emory
     public static String lastName = faker.name().lastName(); // Barton
