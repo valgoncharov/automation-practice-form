@@ -66,7 +66,7 @@ public class AutoPracticeFormWithRandomUtilsTests {
                 .shouldHave(text("Economics")) //Check out Subjects
                 .shouldHave(text("Sports")) //Check out Hobbies
                 .shouldHave(text("1.png")) //Check out Picture
-                .shouldHave(text("Avenue, str")) //Check out Address
+                .shouldHave(text(currentAddress)) //Check out Address
                 .shouldHave(text("NCR Delhi")); //Check out State and City
         $("#closeLargeModal").click();
 

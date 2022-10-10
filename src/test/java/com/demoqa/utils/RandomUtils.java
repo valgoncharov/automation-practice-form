@@ -30,7 +30,7 @@ public class RandomUtils {
     }
 
     public static String getRandomPhone(){
-        return "+0000" + getRandomLong(1111111111L, 9999999999L).toString();
+        return getRandomLong(1111111111L, 9999999999L).toString();
     }
 }
 
