@@ -12,15 +12,15 @@ import static com.demoqa.testData.UserInformation.*;
 public class AutoPracticeFormWithJenkinsTest {
     AutoPracticePageObjects autoPracticePageObjects = new AutoPracticePageObjects();
 
-    @BeforeAll
-    static void configure() {
-        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe");
-        Configuration.browser = "chrome";
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
-        Configuration.holdBrowserOpen = true;
-        Configuration.timeout = 10000;
-    }
+//    @BeforeAll
+//    static void configure() {
+//        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe");
+//        Configuration.browser = "chrome";
+//        Configuration.baseUrl = "https://demoqa.com";
+//        Configuration.browserSize = "1920x1080";
+//        Configuration.holdBrowserOpen = true;
+//        Configuration.timeout = 10000;
+//    }
 
     @Test
     void practiceFormWithAttachmentsTest(){

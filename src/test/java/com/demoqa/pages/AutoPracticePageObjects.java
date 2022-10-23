@@ -44,12 +44,6 @@ public class AutoPracticePageObjects {
 
         return this;
     }
-//Example
-//    public AutoPracticePageObjects clearFirstName(String value){
-//        $("#firstName").clear(); //First Name
-//
-//        return this;
-//    }
 
     public AutoPracticePageObjects setLastName(String value){
         lastNameInput.setValue(value); //Last Name
