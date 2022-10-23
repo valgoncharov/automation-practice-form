@@ -1,9 +1,30 @@
 plugins {
     id 'java-library'
+    id 'io.qameta.allure' version '2.11.0'
 }
 
 group 'com.demoqa'
 version '1.0-SNAPSHOT'
+
+def allureVersion =  "2.19.0"
+
+allure {
+    //секция репорта
+    report {
+        version.set(allureVersion)
+    }
+    // отвечате за появление папочки build/allure-results
+    adapter {
+        aspectjWeaver.set(true)// обработка аннотации @Step
+        frameworks {
+            //название фреймворка
+            junit5 {
+                // версия интеграции фреймворка и Allure
+                adapterVersion.set(allureVersion)
+            }
+        }
+    }
+}
 
 repositories {
     mavenCentral()
@@ -12,19 +33,34 @@ repositories {
 dependencies {
     testImplementation(
     'org.junit.jupiter:junit-jupiter:5.9.0',
-    'org.junit.jupiter:junit-jupiter-engine:5.9.0',
-    'com.codeborne:selenide:6.8.1',
+    'com.codeborne:selenide:6.9.0',
     'org.junit.jupiter:junit-jupiter:5.9.0',
     'io.github.bonigarcia:webdrivermanager:5.3.0',
     'org.slf4j:log4j-over-slf4j:2.0.3',
     'org.slf4j:slf4j-simple:2.0.3',
-    'com.github.javafaker:javafaker:1.0.2'
+    'com.github.javafaker:javafaker:1.0.2',
+    'io.qameta.allure:allure-selenide:$allureVersion'
     )
+
+    testRuntimeOnly ('org.junit.jupiter:junit-jupiter-engine:5.9.0')
 }
 
-test {
+//test {
+//    useJUnitPlatform()
+//    systemProperties(System.getProperties())
+//}
+//tasks.withType(JavaCompile){
+//    options.encoding = 'UTF-8'
+//}
+tasks.withType(Test) {
     useJUnitPlatform()
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
 }
-tasks.withType(JavaCompile){
-    options.encoding = 'UTF-8'
-}
+
+test {}

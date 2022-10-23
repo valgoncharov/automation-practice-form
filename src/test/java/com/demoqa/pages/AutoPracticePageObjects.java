@@ -1,9 +1,13 @@
 package com.demoqa.pages;
 
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 import com.demoqa.pages.components.CalendarComponents;
 import com.demoqa.pages.components.ResultModal;
 import com.demoqa.pages.components.StateComponents;
+import io.qameta.allure.Attachment;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -122,5 +126,11 @@ public class AutoPracticePageObjects {
 
         return this;
     }
+    @Attachment(value = "Screenshot", type = "image/png", fileExtension = "png")
+    public byte[] takeScreenshot(){
+        return ((TakesScreenshot) WebDriverRunner.getWebDriver()).getScreenshotAs(OutputType.BYTES);
+
+    }
+
 
 }
