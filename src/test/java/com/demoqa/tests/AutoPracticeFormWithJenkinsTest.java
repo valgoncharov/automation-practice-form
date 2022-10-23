@@ -1,75 +1,49 @@
 package com.demoqa.tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import com.demoqa.pages.AutoPracticePageObjects;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
+import static com.demoqa.testData.UserInformation.*;
 
 public class AutoPracticeFormWithJenkinsTest {
+    AutoPracticePageObjects autoPracticePageObjects = new AutoPracticePageObjects();
 
     @BeforeAll
     static void configure() {
         System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe");
         Configuration.browser = "chrome";
         Configuration.baseUrl = "https://demoqa.com";
-        //Configuration.timeout = 10000; //10 seconds
         Configuration.browserSize = "1920x1080";
         Configuration.holdBrowserOpen = true;
-        //Configuration.
+        Configuration.timeout = 10000;
     }
 
     @Test
-    void practiceFormTest(){
-        open("/automation-practice-form");
-        //$("[id=firstName]").setValue("Valentin"); //First Name
-        $("#firstName").setValue("Valentine"); //First Name
-        $("[id=lastName]").setValue("Goncharov"); //Last Name
-        $("#userEmail").setValue("vall@mail.ru"); //eMail
-        $("#genterWrapper").$(byText("Male")).click(); //Gender
-        $("#userNumber").setValue("7896543210"); //Mobile(10 Digits)
-        $("#dateOfBirthInput").click();
-        //$("").setValue("27 Jan 1991"); //Date of Birth
-        $(".react-datepicker__month-select").selectOption("January");
-        $(".react-datepicker__year-select").selectOption("1991");
-        $(".react-datepicker__day--027:not(.react-datepicker__year-select").click();
-        $("#hobbiesWrapper").$(byText("Sports")).click();
-        $("#subjectsInput").setValue("Economics").pressEnter(); //Subjects
-        $("#hobbies-checkbox-1").doubleClick(); //Hobbies (?)
-        //$("#uploadPicture").click();
-        $("#uploadPicture").uploadFromClasspath("1.png");
-        //$("#uploadPicture").uploadFromClasspath("C:\\Users\\Валентин\\Pictures\\Screenshots\\1.png"); //Picture Select file
-        //$("#uploadPicture").uploadFile(new File("src/test/resources/1.png"));
-        $("#currentAddress").setValue("Avenue, str"); //Current Address
-        /*$("#state").click();
-        $("#stateCity-wrapper").$(byText("NCR")).click(); //State
-        $("#city").click();
-        $("#stateCity-wrapper").$(byText("Delhi")).click(); //City
-         */
-        executeJavaScript("$('footer').remove()");
-        executeJavaScript("$('#fixedban').remove()");
-
-        $("#state").click();
-        $("#stateCity-wrapper").$(byText("NCR")).click();//xpath its better (?)
-
-        $("#city").click();
-        $("#stateCity-wrapper").$(byText("Delhi")).click();
-
-
-        $("#submit").click(); //Submit
+    void practiceFormWithAttachmentsTest(){
+        SelenideLogger.addListener("allure", new AllureSelenide());
+       autoPracticePageObjects.openPage()
+                     .setFirstName(firstName)
+                     .setLastName(lastName)
+                     .setEmail(email)
+                     .setGender(gender)
+                     .setPhoneNumber(phoneNumber)
+                     .setBirthDay(day, month, year)
+                     .setSubjects(subject)
+                     .setHobbies(hobby)
+                     .uploadFile(picture)
+                     .setAddress(streetAddress)
+                     .setStateCity(state, city)
+                     .pressSubmit();
+       autoPracticePageObjects.checkResultTableVisible();
         //Start check text
-        $(".table-responsive").shouldHave(text("Valentine Goncharov")); //Check out Student Name
-        $(".table-responsive").shouldHave(text("vall@mail.ru")); //Check out Student Email
-        $(".table-responsive").shouldHave(text("Male")); //Check out Gender
-        $(".table-responsive").shouldHave(text("7896543210")); //Check out Mobile
-        $(".table-responsive").shouldHave(text("27 January,1991")); //Check out Date of Birth
-        $(".table-responsive").shouldHave(text("Economics")); //Check out Subjects
-        $(".table-responsive").shouldHave(text("Sports")); //Check out Hobbies
-        $(".table-responsive").shouldHave(text("1.png")); //Check out Picture
-        $(".table-responsive").shouldHave(text("Avenue, str")); //Check out Address
-        $(".table-responsive").shouldHave(text("NCR Delhi")); //Check out State and City
-        $("#closeLargeModal").click();
+       autoPracticePageObjects.checkResultTableVisible()
+                .checkResultTableData(firstName, lastName, email, gender, phoneNumber, date, subject, hobby,
+                        picture, streetAddress, state, city)
+                .pressClose();
     }
 }
+
