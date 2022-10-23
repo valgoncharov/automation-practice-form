@@ -23,8 +23,4 @@ public class UserInformation {
     public static String year = "1991";
     public static String date = day + " " + month + "," + year;
 
-
-
-
-
 }
