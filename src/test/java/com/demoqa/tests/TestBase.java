@@ -20,6 +20,6 @@ public class TestBase {
         //Configuration.timeout = 10000; //10 seconds
         Configuration.browserSize = "1920x1080";
         Configuration.holdBrowserOpen = true;
-        //Configuration.
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
     }
 }
